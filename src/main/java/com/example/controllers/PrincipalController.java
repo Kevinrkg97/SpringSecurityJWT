@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,12 +28,12 @@ public class PrincipalController {
     private UserRepository userRepository;
 
     @GetMapping("/test")
-    public String hello(){
+    public String hello() {
         return "Servicio funcionando correctamente";
     }
 
     @PostMapping("/createUser")
-    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO){
+    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO) {
 
         Set<RoleEntity> roles = createUserDTO.getRoles().stream()
                 .map(role -> RoleEntity.builder()
@@ -43,6 +45,9 @@ public class PrincipalController {
                 .username(createUserDTO.getUsername())
                 .password(passwordEncoder.encode(createUserDTO.getPassword()))
                 .email(createUserDTO.getEmail())
+                .name(createUserDTO.getName())
+                .lastname(createUserDTO.getLastname())
+                .creationDate(String.valueOf(LocalDateTime.now()))
                 .roles(roles)
                 .build();
 
@@ -51,9 +56,14 @@ public class PrincipalController {
         return ResponseEntity.ok(userEntity);
     }
 
+    @GetMapping("/users")
+    public List<UserEntity> getUsers() {
+        return (List<UserEntity>) userRepository.findAll();
+    }
+
     @DeleteMapping("/deleteUser")
-    public String deleteUser(@RequestParam String id){
+    public String deleteUser(@RequestParam String id) {
         userRepository.deleteById(Long.parseLong(id));
-        return "Se ha borrado el user con id".concat(id);
+        return "Se ha borrado el user con id ".concat(id);
     }
 }

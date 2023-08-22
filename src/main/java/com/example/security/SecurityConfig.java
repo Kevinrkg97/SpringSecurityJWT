@@ -42,14 +42,10 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/test", "/login", "/api/createUser").permitAll();
+                    auth.requestMatchers("/api/createUser", "/api/test", "/login").permitAll();
                     auth.requestMatchers("/accessAdmin").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
-//                .formLogin()
-//                .successHandler(successHandler()) // URL despues de logearse
-//                .permitAll()
-//                .and()
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })

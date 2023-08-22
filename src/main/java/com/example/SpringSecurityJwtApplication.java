@@ -10,7 +10,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @SpringBootApplication
@@ -18,6 +22,7 @@ public class SpringSecurityJwtApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityJwtApplication.class, args);
+
 	}
 
 	@Autowired
@@ -27,12 +32,27 @@ public class SpringSecurityJwtApplication {
 	UserRepository userRepository;
 
 	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("*")
+						.allowedMethods("*")
+						.allowedHeaders("*");
+			}
+		};
+	}
+	@Bean
 	CommandLineRunner init(){
 		return args -> {
 			UserEntity userEntity = UserEntity.builder()
 					.email("test@mail.com")
 					.username("test")
 					.password(passwordEncoder.encode("1234"))
+					.name("test")
+					.lastname("ADMIN")
+					.creationDate(String.valueOf(LocalDateTime.now()))
 					.roles(Set.of(RoleEntity.builder()
 							.name(ERole.valueOf(ERole.ADMIN.name()))
 					.build()))
@@ -42,6 +62,9 @@ public class SpringSecurityJwtApplication {
 					.email("test2@mail.com")
 					.username("test2")
 					.password(passwordEncoder.encode("1234"))
+					.name("test")
+					.lastname("USER")
+					.creationDate(String.valueOf(LocalDateTime.now()))
 					.roles(Set.of(RoleEntity.builder()
 							.name(ERole.valueOf(ERole.USER.name()))
 							.build()))
@@ -51,6 +74,9 @@ public class SpringSecurityJwtApplication {
 					.email("test3@mail.com")
 					.username("test3")
 					.password(passwordEncoder.encode("1234"))
+					.name("test")
+					.lastname("INVITED")
+					.creationDate(String.valueOf(LocalDateTime.now()))
 					.roles(Set.of(RoleEntity.builder()
 							.name(ERole.valueOf(ERole.INVITED.name()))
 							.build()))
@@ -61,4 +87,6 @@ public class SpringSecurityJwtApplication {
 			userRepository.save(userEntity3);
 		};
 	}
+
+
 }
