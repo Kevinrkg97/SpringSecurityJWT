@@ -1,0 +1,14 @@
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\controllers\PrincipalController.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\security\filters\JwtAuthorizationFilter.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\repositories\UserRepository.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\repositories\RoleRepository.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\security\filters\JwtAuthenticationFilter.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\controllers\TestRolesController.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\security\SecurityConfig.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\models\RoleEntity.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\models\ERole.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\models\UserEntity.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\service\UserDetailsServiceImpl.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\security\jwt\JwtUtils.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\controllers\requests\CreateUserDTO.java
+C:\Users\Kevin\Desktop\SpringSecurityJWT\src\main\java\com\example\SpringSecurityJwtApplication.java

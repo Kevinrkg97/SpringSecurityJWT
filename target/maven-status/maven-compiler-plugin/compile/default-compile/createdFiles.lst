@@ -1,0 +1,16 @@
+com\example\repositories\RoleRepository.class
+com\example\SpringSecurityJwtApplication.class
+com\example\models\UserEntity$UserEntityBuilder.class
+com\example\repositories\UserRepository.class
+com\example\models\ERole.class
+com\example\models\UserEntity.class
+com\example\controllers\PrincipalController.class
+com\example\models\RoleEntity.class
+com\example\security\jwt\JwtUtils.class
+com\example\security\SecurityConfig.class
+com\example\controllers\TestRolesController.class
+com\example\models\RoleEntity$RoleEntityBuilder.class
+com\example\security\filters\JwtAuthenticationFilter.class
+com\example\security\filters\JwtAuthorizationFilter.class
+com\example\service\UserDetailsServiceImpl.class
+com\example\controllers\requests\CreateUserDTO.class
