@@ -7,7 +7,6 @@ import com.example.models.RoleEntity;
 import com.example.models.UserEntity;
 import com.example.repositories.UserRepository;
 import jakarta.validation.Valid;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("api")
 public class PrincipalController {
 
     @Autowired
@@ -25,14 +25,9 @@ public class PrincipalController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/hello")
+    @GetMapping("/test")
     public String hello(){
-        return "Hello World! Not secured";
-    }
-
-    @GetMapping("/helloSecured")
-    public String helloSecured(){
-        return "Hello World Secured";
+        return "Servicio funcionando correctamente";
     }
 
     @PostMapping("/createUser")
