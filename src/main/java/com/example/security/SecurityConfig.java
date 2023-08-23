@@ -40,6 +40,12 @@ public class SecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
 
         return httpSecurity
+                .cors()
+                .and()
+                .formLogin()
+                    .loginPage("/api/login")
+                .permitAll()
+                .and()
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/createUser", "/api/test", "/login").permitAll();
@@ -60,6 +66,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder) throws Exception {
         return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
@@ -78,4 +85,6 @@ public class SecurityConfig {
             response.sendRedirect("/api/test");
         });
     }
+
+
 }
